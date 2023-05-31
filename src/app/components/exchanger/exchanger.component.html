@@ -1,0 +1,26 @@
+<!-- Main Div -->
+<div>
+  <!-- Convertor -->
+  <div class="grid grid-cols-3 gap-12">
+    <div class="grid">
+      <label class="text-white" for="from">From</label>
+      <select id="from" [(ngModel)]="fromVal" class="selectStyling">
+        <option *ngFor="let opt of rates;" value="USD">{{opt}}</option>
+      </select>
+    </div>
+    <div>
+      <img
+      class="w-20 cursor-pointer  mx-auto" src="assets/transfer.png" alt=""
+      (click)="onSwap(fromVal,toVal)"
+      />
+
+    </div>
+    <div class=" grid">
+      <label class="text-white" for="to">To</label>
+      <select id="to"  [(ngModel)]="toVal" class="selectStyling">
+        <option *ngFor="let opt of rates;" value="USD">{{opt}}</option>
+      </select>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div>
+  <h2
+    class="text-4xl text-white p-4"
+  >Currency Exchanger</h2>
+
+  <!-- Main Div -->
+  <div class="w-full h-64 p-2 grid grid-cols-3 gap-4">
+
+    <!-- Left -->
+    <div class="col-span-1 text-xl text-white flex flex-col justify-between p-4">
+
+      <div>
+        <label
+          class="mb-2 block"
+        for="amount">Amount</label>
+        <input
+          id="amount"
+          min="1"
+          height="100"
+          class="bg-slate-300 h-10
+            outline-none border-none
+            grid w-full text-black
+            p-4
+          "
+          (keyup)="onChange()"
+          [(ngModel)]="amount"
+          [value]="amount"
+          >
+
+
+
+      </div>
+
+
+      <p class="text-center border p-4">
+        {{amount || 1}}.00 EUR = XX.XX USD
+      </p>
+
+
+
+
+
+    </div>
+
+    <!-- Right -->
+    <div class="col-span-2">
+      <app-exchanger></app-exchanger>
+    </div>
+  </div>
+</div>
