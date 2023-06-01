@@ -10,35 +10,15 @@
     <div class="col-span-1 text-xl text-white flex flex-col justify-between p-4">
 
       <div>
-        <label
-          class="mb-2 block"
-        for="amount">Amount</label>
-        <input
-          id="amount"
-          min="1"
-          height="100"
-          class="bg-slate-300 h-10
-            outline-none border-none
-            grid w-full text-black
-            p-4
-          "
-          (keyup)="onChange()"
-          [(ngModel)]="amount"
-          [value]="amount"
-          >
-
-
+        <div class="grid gap-2">
+          <label for="amount">Amount</label>
+          <p-inputNumber class="w-80" id="amount" inputId="amountInput" [(ngModel)]="amount"> </p-inputNumber>
+        </div>
 
       </div>
-
-
       <p class="text-center border p-4">
-        {{amount || 1}}.00 EUR = XX.XX USD
+        {{amount || 1 }}.00 EUR  = XX.XX USD <br>
       </p>
-
-
-
-
 
     </div>
 

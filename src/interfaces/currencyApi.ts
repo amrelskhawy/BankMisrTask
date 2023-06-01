@@ -1,8 +1,7 @@
 export default interface Currency {
-  Currency: object
-  success: boolean
-  timestamp: number
-  base: string
-  date: string
-  rates: JSON
+  success:   boolean;
+  timestamp: number;
+  base:      string;
+  date:      Date;
+  rates:     { [key: string]: number };
 }

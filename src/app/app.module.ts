@@ -8,9 +8,12 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BodyComponent } from './components/body/body.component';
 import { CurrencyConvertorComponent } from './components/currency-convertor/currency-convertor.component';
-import { InputComponent } from './components/input/input.component';
 import { ExchangerComponent } from './components/exchanger/exchanger.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import {PrimengModule} from "./modules/prime-ng-module/primeng.module";
+import {InputNumberModule} from "primeng/inputnumber";
+import {CascadeSelectModule} from "primeng/cascadeselect";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
       NavbarComponent,
       BodyComponent,
       CurrencyConvertorComponent,
-      InputComponent,
       ExchangerComponent
    ],
   imports: [
@@ -26,7 +28,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PrimengModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
