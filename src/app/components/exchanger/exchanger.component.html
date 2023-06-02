@@ -3,16 +3,16 @@
   <!-- Convertor -->
   <div class="grid grid-cols-3 gap-12">
       <div class="grid">
-        <div class=" grid">
+        <div class=" grid ">
           <label class="text-white" for="to">To</label>
-          <select id="to"  [(ngModel)]="toVal" class="selectStyling">
+          <select id="to"  [(ngModel)]="toVal" class="selectStyling ">
             <option *ngFor="let opt of rates;" value="USD">{{opt}}</option>
           </select>
         </div>
       </div>
       <img
-      class="w-20 cursor-pointer  mx-auto" src="assets/transfer.png" alt=""
-      />
+        class="cursor-pointer  mx-auto" ngSrc="assets/transfer.png" alt=""
+        height="512" width="512" />
       <div class=" grid">
       <label class="text-white" for="to">To</label>
 
@@ -27,7 +27,9 @@
     <div class="result text-white border p-12 w-1/2 text-center text-3xl">
       XX.XX USD
     </div>
-    <p-button class="moreBtn w-[48%]"  label="More Details"></p-button>
+    <a class="w-[48%]" [routerLink]="['details', 'EUR']">
+      <p-button class="moreBtn "  label="More Details"></p-button>
+    </a>
 
   </div>
 </div>

@@ -1,10 +1,10 @@
-<div>
+<div class="grid h-fit  gap-8 p-4 ">
   <h2
-    class="text-4xl text-white p-4"
+    class="text-4xl mt-8  text-white "
   >Currency Exchanger</h2>
 
   <!-- Main Div -->
-  <div class="w-full h-64 p-2 grid grid-cols-3 gap-4">
+  <div class="w-full h-fit  p-2 grid grid-cols-3 gap-4">
 
     <!-- Left -->
     <div class="col-span-1 text-xl text-white flex flex-col justify-between p-4">
@@ -26,5 +26,10 @@
     <div class="col-span-2">
       <app-exchanger></app-exchanger>
     </div>
+  </div>
+
+  <h3 class="mt-8 text-4xl h-fit text-white">History </h3>
+  <div class="grid grid-cols-3 w-full gap-8  ">
+    <div *ngFor="let i of [1,2,3,4,5,6,7,8,9]" class="border w-full h-64 rounded-xl"></div>
   </div>
 </div>
