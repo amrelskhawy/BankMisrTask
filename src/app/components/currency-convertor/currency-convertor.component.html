@@ -1,7 +1,16 @@
 <div class="grid h-fit  gap-8 p-4 ">
-  <h2
+  <div
+    class="flex items-center justify-between"
+  >
+
+    <h2
     class="text-4xl mt-8  text-white "
-  >Currency Exchanger</h2>
+    >{{title || 'Currency Exchanger'}}</h2>
+
+    <a  *ngIf="currentCurrecyPath" class="" [routerLink]="['details', 'EUR']">
+      <p-button  class="moreBtn "  label="More Details"></p-button>
+    </a>
+  </div>
 
   <!-- Main Div -->
   <div class="w-full h-fit  p-2 grid grid-cols-3 gap-4">
