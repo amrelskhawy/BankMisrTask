@@ -1,15 +1,18 @@
 <header class="flex justify-between h-32  items-center px-8 bg-[#4f5d64] text-white">
 
-  <img height="50" width="50" ngSrc="assets/images/currency.svg" alt="">
+  <a class="" routerLink="/">
+    <img height="80" width="80" ngSrc="assets/images/currency.svg" alt="">
+  </a>
+
 
   <ul class="flex gap-6 text-2xl">
     <li>
-      <a class="p-4 border rounded-lg" href="">
+      <a class="p-4 border rounded-lg" routerLink="details/USD">
         EUR-USD Details
       </a>
     </li>
     <li>
-      <a class="p-4 border rounded-lg" href="">
+      <a class="p-4 border rounded-lg" routerLink="details/GBP">
         EUR-GBP Details
       </a>
     </li>
