@@ -17,6 +17,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { ExchangerComponent } from './components/exchanger/exchanger.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { TestComponent } from './pages/test/test.component';
+import { AngualrMaterialModule } from './modules/angular-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -39,7 +42,9 @@ import { TestComponent } from './pages/test/test.component';
     InputNumberModule,
     CascadeSelectModule,
     ButtonModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    AngualrMaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
