@@ -1,51 +1,66 @@
 <style>
+
   .convert ::ng-deep button {
     width: 100%;
   }
+
   .moreBtn ::ng-deep button {
     width: 100%;
   }
+
 </style>
 
 <!-- Main Div -->
 <div class="grid gap-4">
+
   <!-- Convertor -->
   <div class="grid grid-cols-5 items-center gap-12">
     <div class=" grid gap-4 col-span-2">
-      <label class="text-white" for="to">From</label>
 
-      <div class="card flex w-full justify-content-center">
-        <p-cascadeSelect [(ngModel)]="fromVal" class="w-full" [(ngModel)]="selectedCity" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem', width: '100%' }" placeholder="Select a Currency"></p-cascadeSelect>
+      <h4 class="text-white">From</h4>
+      <mat-form-field>
+      <mat-label>From</mat-label>
+      <mat-select [value]="fromOption" attr.name="fromOpt"  [(ngModel)]="fromOption" >
+        <mat-option *ngFor="let rate of Rates" [value]="rate">
+          {{rate}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    </div>
+
+
+    <span (click)="onSwap(fromOption,toOption)"
+      class="material-symbols-outlined cursor-pointer col-span-1 text-white text-5xl mx-auto relative top-2">
+      repeat
+    </span>
+
+    <div class="gap-4 grid col-span-2">
+      <div class=" grid gap-4 col-span-2">
+
+
+        <h4 class="text-white">To</h4>
+        <mat-form-field>
+          <mat-label>To</mat-label>
+          <mat-select [value]="toOption" attr.name="toOpt" [(ngModel)]="toOption" >
+            <mat-option *ngFor="let rate of Rates" [value]="rate">
+              {{rate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
-      </div>
 
-
-
-
-      <span (click)="onSwap(fromVal,toVal)" class="material-symbols-outlined cursor-pointer col-span-1 text-white text-5xl mx-auto relative top-2">
-        repeat
-        </span>
-
-
-
-
-      <div class="gap-4 grid col-span-2">
-      <label class="text-white" for="to">To</label>
-
-      <div class="card flex w-full justify-content-center">
-        <p-cascadeSelect class="w-full" [(ngModel)]="toVal" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem', width: '100%' }" placeholder="Select a Currency"></p-cascadeSelect>
-      </div>
-      </div>
+    </div>
   </div>
-  <p-button class="convert" label="Convert"></p-button>
-<!--  Result -->
+  <p-button (click)="convertFunc()" class="convert" label="Convert"></p-button>
+  <!--  Result -->
   <div class="flex gap-8 max-w-full items-center">
     <div class="result text-white border w-full p-12 text-center text-3xl">
-      XX.XX USD
+      {{result || 'XX.XX'}} {{toOption || 'USD'}}
     </div>
-    <a  *ngIf="!currentCurrecyPath" class="w-[48%]" [routerLink]="['details', 'EUR']">
-      <p-button  class="moreBtn "  label="More Details"></p-button>
+    <a *ngIf="!currentCurrencyPath" class="w-[48%]" [routerLink]="['details', 'EUR']">
+      <p-button class="moreBtn " label="More Details"></p-button>
     </a>
-
   </div>
 </div>
