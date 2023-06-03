@@ -7,8 +7,8 @@
     class="text-4xl mt-8  text-white "
     >{{title || 'Currency Exchanger'}}</h2>
 
-    <a  *ngIf="currentCurrecyPath" class="" [routerLink]="['details', 'EUR']">
-      <p-button  class="moreBtn "  label="More Details"></p-button>
+    <a *ngIf="currentCurrencyPath" class="" routerLink="/">
+      <p-button  class="moreBtn "  label="Go Home"></p-button>
     </a>
   </div>
 
@@ -33,7 +33,7 @@
 
     <!-- Right -->
     <div class="col-span-2">
-      <app-exchanger></app-exchanger>
+      <app-exchanger [amount]="amount"></app-exchanger>
     </div>
   </div>
 
