@@ -11,14 +11,14 @@ export class CurrencyConvertorComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   @Input() title: any = ''
-  currentCurrecyPath!: string
+  currentCurrencyPath!: string
 
   amount: number = 1;
 
   ngOnInit() {
     this.route.url.subscribe(params =>
 
-      this.currentCurrecyPath = params[1]['path']
+      this.currentCurrencyPath = params[1]['path']
     )
   }
 
