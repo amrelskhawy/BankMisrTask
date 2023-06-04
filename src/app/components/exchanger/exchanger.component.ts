@@ -191,7 +191,7 @@ export class ExchangerComponent implements OnInit {
   fromOption: string = 'EUR'
   toOption: string = 'USD'
 
-  result?: number
+  result?: any
 
   @Input() amount?: number
 
@@ -199,13 +199,15 @@ export class ExchangerComponent implements OnInit {
     this.fromOption = toVal;
     this.toOption = fromVal;
 
-    console.log(`Amount ${this.amount} From ${this.fromOption} and To ${this.toOption}`);
+    this.convertFunc()
 
   }
 
   convertFunc() {
-    this.result = this.testedRates[this.toOption] * (this.amount as number)
-
+    this.apis.convert(this.fromOption,this.toOption, ( this.amount as number )).subscribe(data =>{
+      this.dataApi = (data as Currency)
+      this.result = this.dataApi.result
+    })
   }
 
   constructor(private apis: ApiCallingService,
