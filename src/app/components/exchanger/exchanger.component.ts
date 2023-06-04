@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output, OnInit, Input} from '@angular/core';
 import { ApiCallingService } from "../../services/api-calling.service"
 import Currency from "../../interfaces/currencyApi"
 import { ActivatedRoute } from '@angular/router';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-exchanger',
@@ -10,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ExchangerComponent implements OnInit {
   dataApi?: Currency;
   rates?: Array<string>;
-  currentCurrencyPath!: String
+  currentCurrencyPath!: string
+  loading: boolean = false
 
   selected?: any;
   testedRates: {[key:string]: number} = {
@@ -188,14 +190,14 @@ export class ExchangerComponent implements OnInit {
   Rates: any = Object.keys(this.testedRates)
 
   rate?: string = ''
-  fromOption: string = 'EUR'
+  fromOption: string = this.currentCurrencyPath ? this.currentCurrencyPath :  'EUR'
   toOption: string = 'USD'
 
   result?: any
 
   @Input() amount?: number
 
-  onSwap( fromVal: string, toVal: string) {
+  swapFunc(fromVal: string, toVal: string) {
     this.fromOption = toVal;
     this.toOption = fromVal;
 
@@ -204,27 +206,26 @@ export class ExchangerComponent implements OnInit {
   }
 
   convertFunc() {
-    this.apis.convert(this.fromOption,this.toOption, ( this.amount as number )).subscribe(data =>{
-      this.dataApi = (data as Currency)
-      this.result = this.dataApi.result
-    })
+    this.loading = true
+    this.apis.convert(this.fromOption, this.toOption, this.amount as number)
+      .pipe(
+        tap(data => {
+          this.dataApi = data as Currency;
+        }),
+        map(data => (data as Currency).result)
+      )
+      .subscribe(result => {
+        this.result = result;
+        this.loading = false
+      });
   }
 
   constructor(private apis: ApiCallingService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // let dataA =  this.apis.getData().subscribe(data => {
-    //   this.dataApi = (data as Currency)
-    //   this.rates = Object.keys(this.dataApi['rates'])
-    //   console.log(this.rates)
-
-    // })
-
-
     this.route.url.subscribe(params => {
       if( params.length > 1)  this.currentCurrencyPath = params[1]['path']
-
     })
   }
 

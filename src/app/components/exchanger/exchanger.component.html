@@ -19,18 +19,18 @@
 
       <h4 class="text-white">From</h4>
       <mat-form-field>
-      <mat-label>From</mat-label>
-      <mat-select [value]="fromOption" attr.name="fromOpt"  [(ngModel)]="fromOption" >
-        <mat-option *ngFor="let rate of Rates" [value]="rate">
-          {{rate}}
-        </mat-option>
-      </mat-select>
+        <mat-label >From</mat-label>
+        <mat-select  [value]="fromOption"  [(ngModel)]="fromOption" >
+          <mat-option *ngFor="let rate of Rates" [value]="rate">
+            {{rate}}
+          </mat-option>
+        </mat-select>
     </mat-form-field>
 
     </div>
 
 
-    <span (click)="onSwap(fromOption,toOption)"
+    <span (click)="swapFunc(fromOption,toOption)"
       class="material-symbols-outlined cursor-pointer col-span-1 text-white text-5xl mx-auto relative top-2">
       repeat
     </span>
@@ -42,7 +42,7 @@
         <h4 class="text-white">To</h4>
         <mat-form-field>
           <mat-label>To</mat-label>
-          <mat-select [value]="toOption" attr.name="toOpt" [(ngModel)]="toOption" >
+          <mat-select [value]="toOption"  [(ngModel)]="toOption" >
             <mat-option *ngFor="let rate of Rates" [value]="rate">
               {{rate}}
             </mat-option>
@@ -59,8 +59,14 @@
     <div class="result text-white border w-full p-12 text-center text-3xl">
       {{result || 'XX.XX'}} {{toOption || 'USD'}}
     </div>
-    <a *ngIf="!currentCurrencyPath" class="w-[48%]" [routerLink]="['details', 'EUR']">
+    <a *ngIf="!currentCurrencyPath" class="w-[48%]" [routerLink]="['details', fromOption]">
       <p-button class="moreBtn " label="More Details"></p-button>
     </a>
   </div>
+  <div *ngIf="loading"
+    class="absolute w-[80%] bg-white/20  left-1/2 -translate-x-1/2 h-[30%] rounded-3xl backdrop-blur-sm flex justify-center items-center"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+
 </div>
