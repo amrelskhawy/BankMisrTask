@@ -7,12 +7,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiCallingService {
 
+  url: string = "https://api.exchangerate.host/"
+
   constructor(private http: HttpClient) { }
 
-  getData() {
-    return this.http.get('http://data.fixer.io/api/latest', {
+  getSymbols() {
+    return this.http.get(`${this.url}/symbols` )
+  }
+
+  convert(fromCurrency: string, toCurrency: string, amount: number) {
+    return this.http.get(`${this.url}/convert`, {
       params: {
-        "access_key": "21fed24816b738644b1434a85eb6dc51"
+        "from": fromCurrency,
+        "to": toCurrency,
+        "amount": amount
       }
     })
   }
