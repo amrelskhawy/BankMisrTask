@@ -204,7 +204,7 @@ export class ExchangerComponent implements OnInit {
 
   fromOption= 'EUR'
   toOption = 'USD'
-  resultsArray!: History[];
+  resultsArray: History[] = [];
   result = 0;
 
   @Input() amount= 1;
@@ -229,7 +229,6 @@ export class ExchangerComponent implements OnInit {
     })
     localStorage.setItem('Results-History',
       JSON.stringify(this.resultsArray));
-
     this.converted.emit(true);
   }
 
