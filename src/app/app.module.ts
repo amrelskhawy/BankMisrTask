@@ -1,40 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { CurrencyConvertorComponent } from './components/currency-convertor/currency-convertor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { NgOptimizedImage } from "@angular/common";
-import { HomeComponent } from './pages/home/home.component';
-import { ExchangerComponent } from './components/exchanger/exchanger.component';
-import { DetailsComponent } from './pages/details/details.component';
 import { AngualrMaterialModule } from './modules/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MyComponentsModule} from "./components/my-components.module";
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    CurrencyConvertorComponent,
-    ExchangerComponent,
-    DetailsComponent,
-    HomeComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule,
     HttpClientModule,
-    NgOptimizedImage,
     AngualrMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MyComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
