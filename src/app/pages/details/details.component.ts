@@ -14,7 +14,7 @@ export class DetailsComponent implements OnInit {
   currencySymbol?: string
   symbols?: SymbolInterface
 
-  currencyTitle?: string
+  currencyTitle = ''
 
   constructor(private route: ActivatedRoute, private Api: ApiCallingService) {
   }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component,  Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {History} from "../../interfaces/history.interface";
 
@@ -9,19 +9,19 @@ import {History} from "../../interfaces/history.interface";
 })
 export class CurrencyConvertorComponent implements OnInit {
 
-  history: any = localStorage.getItem("Results-History");
+  history: string = (localStorage.getItem("Results-History") as string);
 
   transactions: History[] = JSON.parse( this.history ) as History[];
   constructor(private route: ActivatedRoute) { }
 
 
-  @Input() title: any = ''
+  @Input() title = ''
 
   currentCurrencyPath!: string
 
-  amount: number = 1;
-  fromOption: string = 'EUR';
-  toOption: string = 'USD';
+  amount = 1;
+  fromOption= 'EUR';
+  toOption = 'USD';
   ngOnInit() {
     this.route.url.subscribe(params =>{
         this.currentCurrencyPath = params[1]['path'];
@@ -34,7 +34,7 @@ export class CurrencyConvertorComponent implements OnInit {
   }
 
   onConversion(){
-    this.history = localStorage.getItem("Results-History");
+    this.history = localStorage.getItem("Results-History") as string;
     this.transactions = JSON.parse( this.history ) as History[];
   }
 

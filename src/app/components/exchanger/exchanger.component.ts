@@ -13,7 +13,7 @@ export class ExchangerComponent implements OnInit {
   dataApi?: Currency;
   rates?: Array<string>;
   currentCurrencyPath!: string
-  loading: boolean = false
+  loading = false
 
   constructor(
     private apis: ApiCallingService,
@@ -28,7 +28,6 @@ export class ExchangerComponent implements OnInit {
     })
   }
 
-  selected?: any;
   testedRates: {[key:string]: number} = {
     "AED": 3.940386,
     "AFN": 93.541754,
@@ -201,15 +200,14 @@ export class ExchangerComponent implements OnInit {
     "ZMW": 21.147987,
     "ZWL": 345.441309
   }
-  Rates: any = Object.keys(this.testedRates)
+  Rates: string[] = Object.keys(this.testedRates)
 
-  rate?: string = ''
-  fromOption: string = 'EUR'
-  toOption: string = 'USD'
-  resultsArray: History[] = [];
-  result: number = 0;
+  fromOption= 'EUR'
+  toOption = 'USD'
+  resultsArray!: History[];
+  result = 0;
 
-  @Input() amount: number = 1;
+  @Input() amount= 1;
   @Output() converted: EventEmitter<boolean> = new EventEmitter<boolean>() ;
   @Output() fromChanged: EventEmitter<string> = new EventEmitter<string>() ;
   @Output() toChanged: EventEmitter<string> = new EventEmitter<string>() ;
@@ -267,10 +265,6 @@ export class ExchangerComponent implements OnInit {
 
   }
 
-  onChange(e: any) {
-    console.log(e);
-
-  }
 
 
 
