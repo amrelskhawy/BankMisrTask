@@ -39,9 +39,6 @@ export class CurrencyConvertorComponent implements OnInit {
         this.currentCurrencyPath = url[1]?.path;
         this.title = this.currentCurrencyPath;
     });
-    setInterval(()=>{
-      console.log(this.showHostrical)
-    },2000)
   }
 
   onConversion(){
