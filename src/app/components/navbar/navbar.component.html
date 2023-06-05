@@ -1,16 +1,19 @@
 <header class="flex lg:justify-between justify-around py-8 lg:h-32 h-44 lg:flex-row flex-col   items-center px-8 bg-[#4f5d64] text-white">
 
-  <a class="" routerLink="/">
+  <a class="hidden lg:block" routerLink="/">
     <img height="80" width="80" ngSrc="assets/images/currency.svg" alt="">
   </a>
 
 
-  <ul class="flex gap-6 text-2xl">
+  <ul class="flex gap-6 justify-between items-center text-2xl">
     <li>
       <a class="p-4 border rounded-lg" routerLink="details/USD">
         EUR-USD Details
       </a>
     </li>
+    <a class="lg:hidden" routerLink="/">
+      <img height="80" width="80" ngSrc="assets/images/currency.svg" alt="">
+    </a>
     <li>
       <a class="p-4 border rounded-lg" routerLink="details/GBP">
         EUR-GBP Details
