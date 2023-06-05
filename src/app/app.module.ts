@@ -8,15 +8,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CurrencyConvertorComponent } from './components/currency-convertor/currency-convertor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { PrimengModule } from "./modules/primeng.module";
-import { InputNumberModule } from "primeng/inputnumber";
-import { CascadeSelectModule } from "primeng/cascadeselect";
-import { ButtonModule } from "primeng/button";
 import { NgOptimizedImage } from "@angular/common";
 import { HomeComponent } from './pages/home/home.component';
 import { ExchangerComponent } from './components/exchanger/exchanger.component';
 import { DetailsComponent } from './pages/details/details.component';
-import { TestComponent } from './pages/test/test.component';
 import { AngualrMaterialModule } from './modules/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -30,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ExchangerComponent,
     DetailsComponent,
     HomeComponent,
-    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,10 +32,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    PrimengModule,
-    InputNumberModule,
-    CascadeSelectModule,
-    ButtonModule,
     NgOptimizedImage,
     AngualrMaterialModule,
     BrowserAnimationsModule
