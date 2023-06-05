@@ -1,15 +1,13 @@
 export default interface SymbolInterface {
   motd:    MOTD;
   success: boolean;
-  symbols: { [key: string]: Symbol };
+  symbols: { [key: string]: {
+      description: string;
+      code:        string;
+    }};
 }
 
 export interface MOTD {
   msg: string;
   url: string;
-}
-
-export interface Symbol {
-  description: string;
-  code:        string;
 }
