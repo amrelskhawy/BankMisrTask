@@ -16,23 +16,21 @@ interface RateInterface {
 export class HistoricalChartComponent implements OnInit {
   @Input() baseCurrency = ''
   @Input() toCurrency = ''
-  months: Set<string> = new Set()
-  historicalData!: Historical
   rates!: { [key: string]: number };
-  monthsMap: any = {
-    '01':'January',
-    '02':'February',
-    '03':'March',
-    '04':'April',
-    '05':'May',
-    '06':'June',
-    '07':'July',
-    '08':'August',
-    '09':'September',
-    '10':'October',
-    '11':'November',
-    '12':'December'
-  }
+  months: string[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
   chartCurrency = ''
   chartData: RateInterface[] = []
   historicalChart: any
@@ -57,7 +55,7 @@ export class HistoricalChartComponent implements OnInit {
     this.historicalChart = new Chart("myChart", {
       type: 'line',
       data: {
-        labels: Object.values(this.monthsMap).map(month => month),
+        labels: this.months.map(month => month),
         datasets: [
           {
             label: `historical data for ${this.baseCurrency} to ${this.toCurrency}`,
@@ -84,16 +82,6 @@ export class HistoricalChartComponent implements OnInit {
   getHistorical() {
     this.api.getMonthlyHistoricalRatesForYear(this.baseCurrency, this.toCurrency).subscribe(data => {
       this.rates = data.rates
-      Object.entries(this.rates).map(item => {
-        // Rates
-        // console.log(Object.entries(this.rates).map(item => Object.entries(item[1])[0][1]))
-
-      })
-        this.months = new Set(Object.entries(this.rates).map((item) => {
-          const month: string = item[0].slice(5,7).toString();
-          return this.monthsMap[month];
-        }))
-
     })
 
   }
