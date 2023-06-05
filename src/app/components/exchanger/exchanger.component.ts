@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Output, OnInit, Input} from '@angular/core';
 import { ApiCallingService } from "../../services/api-calling.service"
-import Currency from "../../interfaces/currencyApi"
+import Currency from "../../interfaces/currency.interface"
 import { ActivatedRoute } from '@angular/router';
 import { tap, map } from 'rxjs/operators';
+import {History} from "../../interfaces/history.interface";
 
 @Component({
   selector: 'app-exchanger',
@@ -13,6 +14,19 @@ export class ExchangerComponent implements OnInit {
   rates?: Array<string>;
   currentCurrencyPath!: string
   loading: boolean = false
+
+  constructor(
+    private apis: ApiCallingService,
+    private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.url.subscribe(params => {
+      if( params.length > 1) {
+        this.currentCurrencyPath = params[1]['path'];
+        this.fromOption = this.currentCurrencyPath;
+      }
+    })
+  }
 
   selected?: any;
   testedRates: {[key:string]: number} = {
@@ -190,12 +204,15 @@ export class ExchangerComponent implements OnInit {
   Rates: any = Object.keys(this.testedRates)
 
   rate?: string = ''
-  fromOption: string = this.currentCurrencyPath ? this.currentCurrencyPath :  'EUR'
+  fromOption: string = 'EUR'
   toOption: string = 'USD'
+  resultsArray: History[] = [];
+  result: number = 0;
 
-  result?: any
-
-  @Input() amount?: number
+  @Input() amount: number = 1;
+  @Output() converted: EventEmitter<boolean> = new EventEmitter<boolean>() ;
+  @Output() fromChanged: EventEmitter<string> = new EventEmitter<string>() ;
+  @Output() toChanged: EventEmitter<string> = new EventEmitter<string>() ;
 
   swapFunc(fromVal: string, toVal: string) {
     this.fromOption = toVal;
@@ -204,6 +221,28 @@ export class ExchangerComponent implements OnInit {
     this.convertFunc()
 
   }
+
+  pushToResultsArray(){
+    this.resultsArray.unshift({
+      fromCurrency: this.fromOption,
+      toCurrency: this.toOption,
+      result: this.result,
+      amount: this.amount
+    })
+    localStorage.setItem('Results-History',
+      JSON.stringify(this.resultsArray));
+
+    this.converted.emit(true);
+  }
+
+
+  onFromChange(){
+    this.fromChanged.emit(this.fromOption);
+  }
+  onToChange(){
+    this.toChanged.emit(this.toOption);
+  }
+
 
   convertFunc() {
     this.loading = true
@@ -217,16 +256,15 @@ export class ExchangerComponent implements OnInit {
       .subscribe(result => {
         this.result = result;
         this.loading = false
+        if(this.resultsArray.length <= 9){
+          this.pushToResultsArray();
+        }
+        else{
+          this.resultsArray.pop();
+          this.pushToResultsArray();
+        }
       });
-  }
 
-  constructor(private apis: ApiCallingService,
-    private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.route.url.subscribe(params => {
-      if( params.length > 1)  this.currentCurrencyPath = params[1]['path']
-    })
   }
 
   onChange(e: any) {
