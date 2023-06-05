@@ -11,7 +11,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-
+import {HistoricalChartComponent} from "./historical-chart/historical-chart.component";
 
 @NgModule({
   imports: [
@@ -28,7 +28,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HomeComponent,
     DetailsComponent,
     CurrencyConvertorComponent,
-    ExchangerComponent
+    ExchangerComponent,
+    HistoricalChartComponent
   ],
   exports: [
     NavbarComponent,
@@ -37,7 +38,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     CurrencyConvertorComponent,
     ExchangerComponent,
     FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    HistoricalChartComponent
   ]
 })
 export class MyComponentsModule { }
