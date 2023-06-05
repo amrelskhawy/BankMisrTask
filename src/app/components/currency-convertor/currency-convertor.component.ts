@@ -18,19 +18,30 @@ export class CurrencyConvertorComponent implements OnInit {
   @Input() title = ''
 
   currentCurrencyPath!: string
+  showHostrical = false
 
   amount = 1;
   fromOption= 'EUR';
   toOption = 'USD';
   ngOnInit() {
-    this.route.url.subscribe(params =>{
-        this.currentCurrencyPath = params[1]['path'];
-        this.title = this.currentCurrencyPath;
+    this.route.url.subscribe((url)=>{
+
+
+
+    if (url[0].path == 'details') {
+      this.showHostrical = true
+    }
+    else {
+      this.showHostrical = false
     }
 
-    )
-
-
+        // console.log(params)
+        this.currentCurrencyPath = url[1]?.path;
+        this.title = this.currentCurrencyPath;
+    });
+    setInterval(()=>{
+      console.log(this.showHostrical)
+    },2000)
   }
 
   onConversion(){
@@ -46,10 +57,5 @@ export class CurrencyConvertorComponent implements OnInit {
     this.toOption = value;
   }
 
-
-  onChange() {
-    console.log(this.amount);
-
-  }
 
 }

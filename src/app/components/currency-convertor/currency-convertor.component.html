@@ -1,4 +1,9 @@
+<style>
+  .goHome {
+    background: #007BFF !important;
 
+  }
+</style>
 
 <div class="grid h-fit relative  gap-8 p-4 ">
   <div
@@ -9,8 +14,8 @@
     class="text-4xl mt-8  text-white "
     >{{title || 'Currency Exchanger'}}</h2>
 
-    <a *ngIf="currentCurrencyPath" class="" routerLink="/">
-      <button mat-button color="primary" class="moreBtn "  label="Go Home"></button>
+    <a *ngIf="currentCurrencyPath" routerLink="/">
+      <button  class="w-64 text-xl bg-[#007BFF] text-white p-4 rounded-xl "  label="">Go Home</button>
     </a>
   </div>
 
@@ -23,7 +28,9 @@
       <div>
         <div class="grid gap-2">
           <h3 for="amount">Amount</h3>
-          <input matInput  class="text-black" id="amountInput" [(ngModel)]="amount">
+          <input
+            min="1" maxlength="7"
+            class="text-black h-14 px-4 rounded-xl " type="number" id="amountInput" [(ngModel)]="amount">
         </div>
 
       </div>
@@ -44,15 +51,28 @@
     </div>
   </div>
 
-  <h3 class="mt-8 text-4xl h-fit text-white">History </h3>
-  <div class="grid lg:grid-cols-3 grid-cols-2 w-full gap-8  ">
-    <div *ngFor="let trans of transactions" class="border w-full grid items-center justify-center h-64 text-white p-4 text-3xl mb-8 rounded-xl">
-      <div class="flex flex-col justify-center items-center w-full">
-        <span>{{trans.amount}} {{trans.fromCurrency}}</span>
-        <span >=</span>
-        <div class="flex justify-around">
+<!--If user is in Details Component-->
+<div *ngIf="showHostrical">
+  <h3>Historical chart</h3>
+  <app-historical-chart
+    [baseCurrency]="fromOption"
+    [toCurrency]="toOption"
 
-          <span>{{trans.result | number: '1.0-2'}} {{trans.toCurrency}}</span>
+  ></app-historical-chart>
+</div>
+
+<!--  If the user in Home Component-->
+  <div *ngIf="!showHostrical">
+    <h3 class="mt-8 text-4xl h-fit text-white">History </h3>
+    <div class="grid lg:grid-cols-3 grid-cols-2 w-full gap-8  ">
+      <div *ngFor="let trans of transactions" class="border w-full grid items-center justify-center h-64 text-white p-4 text-3xl mb-8 rounded-xl">
+        <div class="flex flex-col justify-center items-center w-full">
+          <span>{{trans.amount}} {{trans.fromCurrency}}</span>
+          <span >=</span>
+          <div class="flex justify-around">
+
+            <span>{{trans.result | number: '1.0-2'}} {{trans.toCurrency}}</span>
+          </div>
         </div>
       </div>
     </div>
